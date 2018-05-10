@@ -36,8 +36,15 @@ void learning() {
 
 void solver() {
     cout << "Введите размерность матрицы: \n";
-    int n;
-    cin >> n;
+    int n = 0;
+    do {
+        string s;
+        getline(cin, s);
+        if(s.size() > 1) {
+            continue;
+        }
+        n = s[0] - '0';
+    }while(!(n >= 1 && n <= 9));
     cout << "Введите целые коэффициенты СЛАУ вместе с правой частью:\n";
     vector<vector<int>> coefficients(n, vector<int>(n));
     vector<int> right(n);
@@ -56,9 +63,7 @@ void solver() {
     }
 }
 
-
-
-int main() {
+void menu() {
     while(true) {
         cout << "Выберите режим:\n1 Решатель СЛАУ\n2 Практическое обучение\n3 Выход\n";
         char c;
@@ -75,5 +80,9 @@ int main() {
             learning();
         }
     }
+}
+
+int main() {
+    menu();
     return 0;
 }
