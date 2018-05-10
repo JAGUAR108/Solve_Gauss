@@ -16,7 +16,7 @@ using namespace std;
 
 const double EPS = 1e-9;
 
-Linear_system:: Linear_system(int n) {
+Linear_system::Linear_system(int n) {
     coefficients.resize(n, vector<int>(n));
     right.resize(n);
     roots.resize(n);
@@ -47,6 +47,12 @@ void print_matrix(const vector<vector<double>> &vec,
         cout << b[i] << endl;
     }
     cout << endl;
+}
+
+bool Linear_system::set_coefficients(const vector<vector<int>> &input_coefficients, const vector<int> &input_right) {
+    coefficients = input_coefficients;
+    right = input_right;
+    return solve(false);
 }
 
 bool Linear_system::solve(bool need_print) {

@@ -21,6 +21,8 @@ class Linear_system {
     
 public:
     Linear_system(int n = 2);
+    bool set_coefficients(const vector<vector<int>> &input_coefficients,
+                          const vector<int> &input_right);
     bool solve(bool need_print = true);
     void print();
     bool check_answer(const vector<int> &ans);

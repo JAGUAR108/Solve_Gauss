@@ -23,7 +23,7 @@ void learning() {
                 cin >> ans[j];
             }
             if(system.check_answer(ans)) {
-                cout << "Это правильный ответ! Идём дальше!" << endl;
+                cout << "Это правильный ответ! Идём дальше!\n" << endl;
                 break;
             }
             else {
@@ -31,11 +31,49 @@ void learning() {
             }
         }
     }
-    cout << "Поздравляем! Вы прошли практический курс обучения!\n";
+    cout << "Поздравляем! Вы прошли практический курс обучения!\n\n\n";
 }
+
+void solver() {
+    cout << "Введите размерность матрицы: \n";
+    int n;
+    cin >> n;
+    cout << "Введите целые коэффициенты СЛАУ вместе с правой частью:\n";
+    vector<vector<int>> coefficients(n, vector<int>(n));
+    vector<int> right(n);
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            cin >> coefficients[i][j];
+        }
+        cin >> right[i];
+    }
+    Linear_system input_system;
+    if(input_system.set_coefficients(coefficients, right)) {
+        input_system.solve();
+    }
+    else {
+        cout << "Данная матрица не удовлетворяет условию метода.\n\n";
+    }
+}
+
+
 
 int main() {
-    learning();
+    while(true) {
+        cout << "Выберите режим:\n1 Решатель СЛАУ\n2 Практическое обучение\n3 Выход\n";
+        char c;
+        do {
+            cin >> c;
+        }while(!(c >= '1' && c <= '3'));
+        if(c == '3') {
+            break;
+        }
+        if(c == '1') {
+            solver();
+        }
+        if(c == '2') {
+            learning();
+        }
+    }
     return 0;
 }
-
